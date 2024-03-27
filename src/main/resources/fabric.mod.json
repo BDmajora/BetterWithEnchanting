@@ -19,7 +19,16 @@
   "entrypoints": {
     "main": [
 			"googy.betterwithenchanting.BetterWithEnchanting"
-    ]
+    ],
+		"preLaunch": [
+			"googy.betterwithenchanting.BetterWithEnchanting"
+		],
+		"recipesReady": [
+			"googy.betterwithenchanting.BetterWithEnchanting"
+		],
+		"beforeClientStart": [
+			"googy.betterwithenchanting.BetterWithEnchanting"
+		]
   },
   "mixins": [
       "betterwithenchanting.mixins.json"
