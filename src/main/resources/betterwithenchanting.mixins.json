@@ -13,12 +13,12 @@
       "EntityLivingMixin",
       "EntityBobberMixin",
       "ItemToolMixin",
-      "WorldMixin",
-      "PacketMixin"
+      "WorldMixin"
     ],
     "client": [
       "GuiTooltipMixin",
-      "PlayerControllerMixin"
+      "PlayerControllerMixin",
+      "TileEntityRenderDispatcherAccessor"
     ],
     "injectors": {
         "defaultRequire": 1
