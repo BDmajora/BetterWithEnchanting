@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
 
 public class EnchantmentTableRenderer extends TileEntityRenderer<TileEntityEnchantmentTable> {
 	private static final BookModel model = new BookModel();
-	private static final String texturePath = "assets/" + BetterWithEnchanting.MOD_ID + "/block/enchantment_table/book.png";
+	private static final String texturePath = "assets/" + BetterWithEnchanting.MOD_ID + "/book/book.png";
 	private final EntityItem entityItem = new EntityItem(null);
 	private final ItemEntityRenderer renderer = new ItemEntityRenderer();
 
