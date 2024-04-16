@@ -10,7 +10,6 @@
       "NetClientHandlerMixin"
     ],
     "client": [
-      "TileEntityRenderDispatcherAccessor"
     ],
     "injectors": {
         "defaultRequire": 1

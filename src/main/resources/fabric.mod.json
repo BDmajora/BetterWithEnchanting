@@ -28,6 +28,9 @@
 		],
 		"beforeClientStart": [
 			"googy.betterwithenchanting.BetterWithEnchanting"
+		],
+		"beforeGameStart": [
+			"googy.betterwithenchanting.BetterWithEnchanting"
 		]
   },
   "mixins": [
