@@ -108,13 +108,7 @@ dependencies {
 	// Helper library
 	modImplementation "com.github.Turnip-Labs:bta-halplibe:${project.halplibe_version}"
 
-	modImplementation "ModMenu:ModMenu:2.0.3"
-
-	//TerrainAPI
-	modImplementation "TerrainAPI:terrainapi:${project.terrain_api_version}"
-
-	//Catalyst
-	modImplementation files('dependencies/catalyst-core-1.1.3.jar')
+	modImplementation "ModMenu:ModMenu:2.0.5"
 
 	//Enchantment Lib
 	modImplementation files('dependencies/enchantmentlib-1.0.0.jar')

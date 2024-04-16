@@ -8,6 +8,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.tag.BlockTags;
+import net.minecraft.core.data.registry.Registries;
+import net.minecraft.core.data.registry.recipe.RecipeNamespace;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.sound.BlockSounds;
 import org.slf4j.Logger;
@@ -63,6 +65,13 @@ public class BetterWithEnchanting implements ModInitializer, RecipeEntrypoint, G
 	@Override
 	public void onPreLaunch() {
 		NetworkHelper.register(PacketEnchantItem.class, true, false);
+	}
+
+	@Override
+	public void initNamespaces() {
+		RecipeNamespace namespace = new RecipeNamespace();
+		namespace.register("workbench", Registries.RECIPES.WORKBENCH);
+		Registries.RECIPES.register(MOD_ID, namespace);
 	}
 
 	public void onRecipesReady() {
