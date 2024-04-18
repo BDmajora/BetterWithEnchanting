@@ -1,7 +1,6 @@
 package googy.betterwithenchanting.utils;
 
 import googy.betterwithenchanting.Global;
-import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import turing.enchantmentlib.EnchantmentLib;
 import turing.enchantmentlib.api.EnchantmentData;
@@ -11,7 +10,7 @@ import java.util.*;
 
 public class EnchantmentUtils
 {
-	public static List<EnchantmentData> getPossible(ItemStack stack, int enchantability)
+	public static List<EnchantmentData> getPossible(ItemStack stack, int enchantability, Random rand)
 	{
 		List<EnchantmentData> list = new ArrayList<>();
 
@@ -21,9 +20,11 @@ public class EnchantmentUtils
 
 			for (int level = 1; level <= enchantment.getMaxLevel(); level++)
 			{
-				if (enchantability >= level)
+				if (enchantability >= (enchantment.getRarity() + level))
 				{
-					list.add(new EnchantmentData(enchantment, level));
+					if (rand.nextInt((enchantment.getRarity() + level) + 1) == 0) {
+						list.add(new EnchantmentData(enchantment, level));
+					}
 				}
 			}
 		}
@@ -56,7 +57,7 @@ public class EnchantmentUtils
 		int enchantability = Math.round(k * rand_bonus_percent);
 		if (enchantability < 0) enchantability = 1;
 
-		List<EnchantmentData> possibleEnchantments = getPossible(stack, enchantability);
+		List<EnchantmentData> possibleEnchantments = getPossible(stack, enchantability, random);
 		if (possibleEnchantments.isEmpty()) return null;
 
 		EnchantmentData randomEnchantment = possibleEnchantments.get(random.nextInt(possibleEnchantments.size()));

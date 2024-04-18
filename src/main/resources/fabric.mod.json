@@ -39,7 +39,7 @@
 
   "depends": {
     "fabricloader": ">=0.13.3",
-		"enchantmentlib": ">=1.0.0"
+		"enchantmentlib": ">=1.0.1"
   },
   "suggests": {
   }
