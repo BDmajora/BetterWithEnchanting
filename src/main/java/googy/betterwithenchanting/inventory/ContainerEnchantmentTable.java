@@ -1,9 +1,6 @@
 package googy.betterwithenchanting.inventory;
 
 import googy.betterwithenchanting.block.entity.TileEntityEnchantmentTable;
-import googy.betterwithenchanting.enchantment.Enchantment;
-import googy.betterwithenchanting.enchantment.EnchantmentData;
-import googy.betterwithenchanting.enchantment.Enchantments;
 import googy.betterwithenchanting.utils.EnchantmentUtils;
 import net.minecraft.core.InventoryAction;
 import net.minecraft.core.block.Block;
@@ -16,6 +13,9 @@ import net.minecraft.core.player.inventory.IInventory;
 import net.minecraft.core.player.inventory.InventoryPlayer;
 import net.minecraft.core.player.inventory.slot.Slot;
 import net.minecraft.core.world.World;
+import turing.enchantmentlib.EnchantmentLib;
+import turing.enchantmentlib.api.EnchantmentData;
+import turing.enchantmentlib.api.IEnchant;
 
 import java.util.List;
 import java.util.Random;
@@ -64,7 +64,13 @@ public class ContainerEnchantmentTable extends Container
 		List<EnchantmentData> enchantments = EnchantmentUtils.generateEnchantmentsList(random, stack, cost);
 		if (enchantments == null) return false;
 
-		EnchantmentUtils.addEnchantments(stack, enchantments);
+		for (EnchantmentData enchantment : enchantments) {
+			if (!EnchantmentLib.enchantItem(stack, enchantment)) {
+				forceUpdateInventory();
+				return false;
+			}
+		}
+
 		forceUpdateInventory();
 
 		return true;
@@ -87,7 +93,7 @@ public class ContainerEnchantmentTable extends Container
 
 		if (stack == null) return;
 
-		List<Enchantment> pool = Enchantments.getPossible(stack.getItem());
+		List<IEnchant> pool = EnchantmentUtils.getAllPossible(stack);
 		if (pool.isEmpty()) return;
 
 
@@ -175,7 +181,7 @@ public class ContainerEnchantmentTable extends Container
 	public boolean playerCanEnchant(EntityPlayer player, int option)
 	{
 		return getSlot(0).hasStack() &&
-			EnchantmentUtils.getEnchantments(getSlot(0).getStack()).isEmpty() &&
+			!EnchantmentLib.isItemEnchanted(getSlot(0).getStack()) &&
 			(player.score >= enchantCost[option] || player.gamemode == Gamemode.creative) &&
 			(getFuelAmount() > option || player.gamemode == Gamemode.creative);
 	}

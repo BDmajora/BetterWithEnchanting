@@ -6,7 +6,6 @@ import googy.betterwithenchanting.inventory.ContainerEnchantmentTable;
 import googy.betterwithenchanting.utils.GuiUtils;
 import net.minecraft.client.entity.player.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiContainer;
-import net.minecraft.core.net.command.TextFormatting;
 import net.minecraft.core.player.inventory.InventoryPlayer;
 import org.lwjgl.opengl.GL11;
 

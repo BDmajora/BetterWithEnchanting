@@ -28,6 +28,9 @@
 		],
 		"beforeClientStart": [
 			"googy.betterwithenchanting.BetterWithEnchanting"
+		],
+		"beforeGameStart": [
+			"googy.betterwithenchanting.BetterWithEnchanting"
 		]
   },
   "mixins": [
@@ -35,7 +38,8 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.13.3"
+    "fabricloader": ">=0.13.3",
+		"enchantmentlib": ">=1.0.1"
   },
   "suggests": {
   }
