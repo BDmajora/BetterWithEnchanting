@@ -10,9 +10,10 @@ import java.util.*;
 
 public class EnchantmentUtils
 {
-	public static List<EnchantmentData> getPossible(ItemStack stack, int enchantability, Random rand)
+	public static List<EnchantmentData> getPossible(ItemStack stack, int enchantability)
 	{
 		List<EnchantmentData> list = new ArrayList<>();
+		int minEnchantability = Math.max((int) (enchantability / 1.92F), Global.config.getInt("default_item_enchantability"));
 
 		for (IEnchant enchantment : EnchantmentLib.ENCHANTMENTS.values())
 		{
@@ -20,11 +21,11 @@ public class EnchantmentUtils
 
 			for (int level = 1; level <= enchantment.getMaxLevel(); level++)
 			{
-				if (enchantability >= (enchantment.getRarity() + level))
+				if (enchantability >= (enchantment.getRarity() + (level - 1)))
 				{
-					if (rand.nextInt((enchantment.getRarity() + level) + 1) == 0) {
-						list.add(new EnchantmentData(enchantment, level));
-					}
+					list.add(new EnchantmentData(enchantment, level));
+					if (enchantment.getMaxLevel() > 2 && level >= enchantment.getMaxLevel() - 1)
+						enchantability = Math.max((int) (enchantability / 1.2F), minEnchantability);
 				}
 			}
 		}
@@ -57,7 +58,7 @@ public class EnchantmentUtils
 		int enchantability = Math.round(k * rand_bonus_percent);
 		if (enchantability < 0) enchantability = 1;
 
-		List<EnchantmentData> possibleEnchantments = getPossible(stack, enchantability, random);
+		List<EnchantmentData> possibleEnchantments = getPossible(stack, enchantability);
 		if (possibleEnchantments.isEmpty()) return null;
 
 		EnchantmentData randomEnchantment = possibleEnchantments.get(random.nextInt(possibleEnchantments.size()));
