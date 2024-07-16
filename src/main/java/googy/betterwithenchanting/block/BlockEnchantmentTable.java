@@ -2,6 +2,7 @@ package googy.betterwithenchanting.block;
 
 import googy.betterwithenchanting.block.entity.TileEntityEnchantmentTable;
 import googy.betterwithenchanting.interfaces.mixins.IEntityPlayer;
+import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.block.BlockTileEntity;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
@@ -24,7 +25,7 @@ public class BlockEnchantmentTable extends BlockTileEntity
 	}
 
 	@Override
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player)
+	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xPlaced, double yPlaced)
 	{
 		if (world.isClientSide) return true;
 

@@ -30,21 +30,19 @@ public class BetterWithEnchanting implements ModInitializer, RecipeEntrypoint, G
 		.setResistance(1200)
 		.setLuminance(7)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE)
-		.setBottomTexture("enchantment_table/bottom.png")
-		.setSideTextures("enchantment_table/side.png")
-		.setTopTexture("enchantment_table/top.png")
+		.setBottomTexture("betterwithenchanting:block/enchantment_table_bottom")
+		.setSideTextures("betterwithenchanting:block/enchantment_table_side")
+		.setTopTexture("betterwithenchanting:block/enchantment_table_top")
 		.build(new BlockEnchantmentTable("enchantmenttable", Global.config.getInt("enchantment_table_id")));
 
     @Override
     public void onInitialize() {
-
 		LOG.info("BetterWithEnchanting initialized!");
-
     }
 
 	@Override
 	public void beforeGameStart() {
-		EntityHelper.Core.createTileEntity(TileEntityEnchantmentTable.class, "EnchantmentTable");
+		EntityHelper.createSpecialTileEntity(TileEntityEnchantmentTable.class, "EnchantmentTable", () -> new EnchantmentTableRenderer());
 	}
 
 	@Override
@@ -54,7 +52,6 @@ public class BetterWithEnchanting implements ModInitializer, RecipeEntrypoint, G
 
 	@Override
 	public void beforeClientStart() {
-		EntityHelper.Client.assignTileEntityRenderer(TileEntityEnchantmentTable.class, new EnchantmentTableRenderer());
 	}
 
 	@Override
