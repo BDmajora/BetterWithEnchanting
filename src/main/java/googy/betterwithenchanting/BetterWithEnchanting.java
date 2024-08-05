@@ -74,11 +74,11 @@ public class BetterWithEnchanting implements ModInitializer, RecipeEntrypoint, G
 	public void onRecipesReady() {
 		RecipeBuilder.Shaped(MOD_ID,
 			" B ",
-			"DCD",
-			"CCC"
+			"OCO",
+			"OOO"
 		)
 			.addInput('B', Item.book)
-			.addInput('C', "minecraft:cobblestones")
+			.addInput('O', Block.obsidian)
 			.addInput('D', Global.config.getBoolean("expensive_crafting") ? Block.blockDiamond : Item.diamond)
 			.create("enchantment_table", enchantmentTable.getDefaultStack());
 	}
